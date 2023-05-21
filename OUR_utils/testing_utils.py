@@ -40,36 +40,47 @@ class ConTextDataset(Dataset):
 
         return image, target
 
-
-dir_images      = 'C:/Users/34644/Desktop/BUISNESS DETECTION/data/JPEGImages/'
-dir_imgs_labels = 'C:/Users/34644/Desktop/BUISNESS DETECTION/data/'
-
-input_size = 256
-
-data_transforms_train = torchvision.transforms.Compose([
+def get_transform(train = True):
+    input_size = 256
+    if train:
+        data_transforms_train = torchvision.transforms.Compose([
         torchvision.transforms.RandomResizedCrop(input_size),
         torchvision.transforms.RandomHorizontalFlip(),
         torchvision.transforms.ToTensor(),
         torchvision.transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
     ])
-data_transforms_test = torchvision.transforms.Compose([
+        return data_transforms_train
+    else:
+        data_transforms_test = torchvision.transforms.Compose([
         torchvision.transforms.Resize(input_size),
         torchvision.transforms.CenterCrop(input_size),
         torchvision.transforms.ToTensor(),
         torchvision.transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
     ])
+        return data_transforms_test
 
-train_Set = ConTextDataset(dir_imgs_labels, dir_images, train = True,  transform = data_transforms_train)
-test_Set  = ConTextDataset(dir_imgs_labels, dir_images, train = False, transform = data_transforms_test)
+
+def make_loader(dataset, batch_size):
+    loader = torch.utils.data.DataLoader(dataset=dataset,
+                                         batch_size=batch_size, 
+                                         shuffle=True,
+                                         pin_memory=True, num_workers=2)
+    return loader
 
 def make(config, device="cuda"):
     # Make the data
-    train, test = get_data(train=True), get_data(train=False)
-    train_loader = make_loader(train, batch_size=config.batch_size)
-    test_loader = make_loader(test, batch_size=config.batch_size)
+    dir_images      = '/home/xnmaster/data/JPEGImages/'
+    dir_imgs_labels = '/home/xnmaster/data/'
 
+    train = ConTextDataset(dir_imgs_labels, dir_images, train = True,  transform = get_transform(True))
+    test  = ConTextDataset(dir_imgs_labels, dir_images, train = False, transform = get_transform(False))
+
+    train_loader  = make_loader(train, batch_size=config.batch_size)
+    test_loader   = make_loader(test, batch_size=config.batch_size)
+
+    model = ConTextTransformer()
     # Make the model
-    model = ConvNet(config.kernels, config.classes).to(device)
+    #model = ConvNet(config.kernels, config.classes).to(device)
 
     # Make the loss and optimizer
     criterion = nn.CrossEntropyLoss()
