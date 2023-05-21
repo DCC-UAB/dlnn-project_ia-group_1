@@ -40,3 +40,4 @@ def make(config, device="cuda"):
         model.parameters(), lr=config.learning_rate)
     
     return model, train_loader, test_loader, criterion, optimizer
+

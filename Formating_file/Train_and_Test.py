@@ -21,3 +21,4 @@ new_path_test  = 'C:/Users/34644/Desktop/BUISNESS DETECTION/data/test.txt'
 
 create_new_file(new_path_train, 'train')
 create_new_file(new_path_test, 'test')
+
