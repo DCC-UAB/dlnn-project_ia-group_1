@@ -13,11 +13,11 @@ class ConTextTransformer(nn.Module):
     def __init__(self, *, image_size, num_classes, dim, depth, heads, mlp_dim, channels=3):
         super().__init__()
 
-        resnet50 = torchvision.models.resnet50(pretrained=True)
-        modules=list(resnet50.children())[:-2]
-        self.resnet50=nn.Sequential(*modules)
+        resnet50 = torchvision.models.resnet50(pretrained=True)   #ResNet 50
+        modules=list(resnet50.children())[:-2]                    #Obtain all the modules without the last two linear layers
+        self.resnet50=nn.Sequential(*modules)                     #Convert all layers into a Sequential object
         for param in self.resnet50.parameters():
-            param.requires_grad = False
+            param.requires_grad = False                           #Freeze the param weights. (Feature Extraction)
         self.num_cnn_features = 64  # 8x8
         self.dim_cnn_features = 2048
         self.dim_fasttext_features = 300

@@ -12,7 +12,7 @@ def obtain_ocr(train = True):
     dir_images     = '/home/xnmaster/data/JPEGImages/'
     with open(ocr_file_path, 'w') as ocr_file, open(path_1, 'r') as train_file:
         for line in train_file:
-            img_name, label = line.split()
+            img_name = line.split()[0]
             file_path = os.path.join(dir_images, img_name + '.jpg')
             ocr_output = reader.readtext(file_path, detail = 0, paragraph= True)
             if len(ocr_output) == 0:
@@ -22,5 +22,5 @@ def obtain_ocr(train = True):
             ocr_file.write(ocr_output + '\n')
 
 reader = easyocr.Reader(['en'], gpu=True)
-obtain_ocr(reader, True)
-obtain_ocr(reader, False)
+obtain_ocr(reader, train = True)
+obtain_ocr(reader, train = False)

@@ -19,11 +19,13 @@ class ConTextDataset(Dataset):
 
         if train:
             path = os.path.join(dir_images_labels,'train.txt')
+            path_ocr = os.path.join(dir_images_labels, 'ocr_train.txt')
         else:
             path = os.path.join(dir_images_labels,'test.txt')
+            path_ocr = os.path.join(dir_images_labels, 'ocr_test.txt')
         
-        with open(path, 'r') as file:
-            self.samples = [tuple(line.split()) for line in file]
+        with open(path, 'r') as file, open(path_ocr, 'r') as ocr_File:
+            self.samples = [tuple(line.split(), line_ocr) for line, line_ocr in zip(file, ocr_File)]
 
     def __len__(self):
         return (len(self.samples))
@@ -36,6 +38,9 @@ class ConTextDataset(Dataset):
         if self.transform:
             image = self.transform(image)
         
+        if self.samples[idx][2] != '0':
+            #Implement text embedding
+            pass
         target = torch.tensor(int(self.samples[idx][1]))
 
         return image, target
@@ -69,11 +74,11 @@ def make_loader(dataset, batch_size):
 
 def make(config, device="cuda"):
     # Make the data
-    dir_images      = '/home/xnmaster/data/JPEGImages/'
     dir_imgs_labels = '/home/xnmaster/data/'
+    dir_images      = '/home/xnmaster/data/JPEGImages/'
 
-    train = ConTextDataset(dir_imgs_labels, dir_images, train = True,  transform = get_transform(True))
-    test  = ConTextDataset(dir_imgs_labels, dir_images, train = False, transform = get_transform(False))
+    train = ConTextDataset(dir_imgs_labels, dir_images, train = True,  transform = get_transform(train = True))
+    test  = ConTextDataset(dir_imgs_labels, dir_images, train = False, transform = get_transform(train = False))
 
     train_loader  = make_loader(train, batch_size=config.batch_size)
     test_loader   = make_loader(test, batch_size=config.batch_size)
