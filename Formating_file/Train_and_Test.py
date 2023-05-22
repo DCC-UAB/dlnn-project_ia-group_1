@@ -5,7 +5,7 @@ def TrainTest_files(new_file_path, type):
     class_label = 0
 
     with open(new_file_path, 'w') as new_file:
-        for i in range(0, 28):
+        for i in range(1, 29):
             file_to_change = os.path.join(train_test_dir, str(i) + f'_{type}.txt')
 
             with open(file_to_change, 'r') as file:
