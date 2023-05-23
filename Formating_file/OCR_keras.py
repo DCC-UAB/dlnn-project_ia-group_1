@@ -1,3 +1,4 @@
+#These file usses the keras ocr, it follows the same principle as the OCR_eassy.py file. It just change how we create the reader object. 
 import os
 import keras_ocr
 from tqdm import tqdm
