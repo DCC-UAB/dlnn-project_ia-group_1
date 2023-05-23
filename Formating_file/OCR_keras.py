@@ -8,12 +8,12 @@ def image_information(train=True):
         variable = 'test'
 
     reader = keras_ocr.pipeline.Pipeline()
-    batch_size = 100
+    batch_size = 8
     start_index = 0
     with open(f'/home/xnmaster/data/{variable}.txt', 'r') as file:
         images_name = file.readlines()
 
-    images = [os.path.join('/home/xnmaster/data/JPEGImages/', image_name.split()[0]) for image_name in images_name]
+    images = [os.path.join('/home/xnmaster/data/JPEGImages/', image_name.split()[0] + '.jpg') for image_name in images_name]
     size_images = len(images)
 
     while start_index < size_images:
@@ -32,3 +32,6 @@ def obtain_keras_ocr(train = True):
         for output in image_information(train):
             result_to_write  = [" ".join([ind[0] for ind in image_output]) if len(image_output) != 0 else '0' for image_output in output]
             file.write('\n'.join(result_to_write))
+
+obtain_keras_ocr(train = True)
+obtain_keras_ocr(train = False)
