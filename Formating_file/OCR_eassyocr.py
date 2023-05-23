@@ -1,5 +1,4 @@
 #These file obtains the OCR for each of the images in the train and test set
-
 import os
 import easyocr
 
