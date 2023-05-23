@@ -1,18 +1,6 @@
-import time,os,json
 from PIL import Image
 import numpy as np
-
-import torch
-import torch.nn as nn
-import torch.nn.functional as F
-
-import torchvision
-from torch.utils.data import Dataset
-
-import time,os,json
-from PIL import Image
-import numpy as np
-
+from einops import rearrange
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -24,7 +12,7 @@ class ConTextTransformer(nn.Module):
     def __init__(self, *, image_size, num_classes, dim, depth, heads, mlp_dim, channels=3):
         super().__init__()
 
-        resnet50 = torchvision.models.resnet50(pretrained=True)         # Download the ResNet-50 architecture with pretrained weights.
+        resnet50 = torchvision.models.resnet50(pretrained=True)          # Download the ResNet-50 architecture with pretrained weights.
         modules = list(resnet50.children())[:-2]                         # Keep all layers until the linear maps.
         self.resnet50 = nn.Sequential(*modules)                          # Convert ResNet-50 modules to a sequential object.
         for param in self.resnet50.parameters():                         # Freeze the weights to perform feature extraction.
@@ -38,7 +26,7 @@ class ConTextTransformer(nn.Module):
         self.fasttext_feature_to_embedding = nn.Linear(self.dim_fasttext_features, dim)    # Linear transformation to project FastText features to the desired dimension.
         self.cls_token = nn.Parameter(torch.randn(1, 1, dim))                              # Learnable CLS token with shape (1, 1, dim) for class prediction during training.
         encoder_layer = nn.TransformerEncoderLayer(d_model=dim, nhead=heads, dim_feedforward=mlp_dim, batch_first=True)  # Define the encoder layer for the Transformer.
-        encoder_norm = nn.LayerNorm(dim)                                                                      # Layer normalization for the encoder output.
+        #encoder_norm = nn.LayerNorm(dim)                                                                     # Layer normalization for the encoder output.
         self.transformer = nn.TransformerEncoder(encoder_layer, num_layers=depth)                            # Transformer encoder to capture contextual information. 
 
         self.to_cls_token = nn.Identity()                                                 # Identity layer to extract the CLS token from the transformer output.

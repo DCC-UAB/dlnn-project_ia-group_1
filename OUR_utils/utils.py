@@ -2,6 +2,7 @@ from OUR_models.our_models import *
 import wandb
 import torch
 import torch.nn 
+import os 
 
 config = dict(
     epochs=5,
@@ -26,19 +27,25 @@ class ConTextDataset(Dataset):
         
         with open(path, 'r') as file, open(path_ocr, 'r') as ocr_File:
             self.samples = [tuple(line.split(), line_ocr) for line, line_ocr in zip(file, ocr_File)]
+        
+        fasttext.util.download_model('en', if_exists='ignore')  # English
+        self.fasttext = fasttext.load_model('cc.en.300.bin')
+        self.dim_fasttext = self.fasttext.get_dimension()
+        self.max_num_words = 64
 
     def __len__(self):
         return (len(self.samples))
 
     def __getitem__(self, idx):
-
-
         img_name = os.path.join(self.dir_images, self.samples[idx][0]+'.jpg')
         image = Image.open(img_name).convert('RGB')
+        
         if self.transform:
             image = self.transform(image)
-        
+
+        text = np.zeros((self.max_num_words, self.dim_fasttext))
         if self.samples[idx][2] != '0':
+            
             #Implement text embedding
             pass
         target = torch.tensor(int(self.samples[idx][1]))
