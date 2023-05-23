@@ -1,5 +1,6 @@
 import os
 import keras_ocr
+from tqdm import tqdm
 
 def image_information(train=True):
     if train:
@@ -14,7 +15,7 @@ def image_information(train=True):
     images = [os.path.join('/home/xnmaster/data/JPEGImages/', image_name.split()[0] + '.jpg') for image_name in images_name]
 
     results = []
-    for image_path in images:
+    for image_path in tqdm(images, desc=f'Processing {variable} images', unit='image'):
         output = reader.recognize([image_path])
         result = " ".join([ind[0] for ind in output[0]]) if len(output) != 0 else '0'
         results.append(result)
