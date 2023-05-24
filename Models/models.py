@@ -1,12 +1,9 @@
-from PIL import Image
 import numpy as np
 from einops import rearrange
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-
 import torchvision
-from torch.utils.data import Dataset
 
 class ConTextTransformer(nn.Module):
     def __init__(self, *, image_size, num_classes, dim, depth, heads, mlp_dim, channels=3):
