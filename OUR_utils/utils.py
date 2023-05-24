@@ -89,7 +89,7 @@ def make(config, device="cuda"):
     directory_test_train_files = '/home/xnmaster/data/'            
     images_directory           = '/home/xnmaster/data/JPEGImages/'
 
-    fasttext_obj = fasttext.load_model('cc.en.300.bin')
+    fasttext_obj = fasttext.load_model('/home/xnmaster/cc.en.300.bin')
     train = ConTextDataset(directory_test_train_files, images_directory, fasttext_obj, train = True,  transform = get_transform(config.input_size, train = True))
     test  = ConTextDataset(directory_test_train_files, images_directory, fasttext_obj, train = False, transform = get_transform(config.input_size, train = False))
 
@@ -103,5 +103,5 @@ def make(config, device="cuda"):
     criterion = nn.CrossEntropyLoss()
     optimizer = torch.optim.Adam(
         model.parameters(), lr=config.learning_rate)
-
+    
     return model, train_loader, test_loader, criterion, optimizer

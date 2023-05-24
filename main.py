@@ -43,7 +43,7 @@ if __name__ == "__main__":
         epochs=50,
         classes=28,
         batch_size=64,
-        learning_rate=5e-3,
+        learning_rate=0.0001,
         input_size=256,
         dataset="Con-Text dataset",
         architecture="ConTextTransformer")
