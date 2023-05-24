@@ -1,17 +1,16 @@
-from Models.models import *
 import torch
-import torch.nn 
+import torch.nn as nn
 import os 
-import torchvision.transforms as transforms
+import torchvision
 from torch.utils.data import Dataset
 from PIL import Image
+import numpy as np
 
-from Models.models import *   #(ConTextTransformer)
 import fasttext
-import fasttext.util
+from Models.model import *   #It contains the Context Model
 
 class ConTextDataset(Dataset):
-    def __init__(self, directory_test_train_files, images_directory, train = True, transform = False):
+    def __init__(self, directory_test_train_files, images_directory, fasttext, train = True, transform = False):
         
         self.path_test_train_files       = directory_test_train_files
         self.images_directory            = images_directory
@@ -28,8 +27,7 @@ class ConTextDataset(Dataset):
             self.samples = [tuple(line.split()) for line in file]        #List of tuples.  Each tuple represents a file. A tuple contains the name and the label of the image.
             self.text    = [text.rstrip() for text in ocr_File]          #List of strings. Text of the ocr either for the train or test images.
 
-        fasttext.util.download_model('en', if_exists='ignore')  # English
-        self.fasttext = fasttext.load_model('cc.en.300.bin')
+        self.fasttext = fasttext
         self.dim_fasttext = self.fasttext.get_dimension()
         self.max_num_words = 64
 
@@ -91,18 +89,19 @@ def make(config, device="cuda"):
     directory_test_train_files = '/home/xnmaster/data/'            
     images_directory           = '/home/xnmaster/data/JPEGImages/'
 
-    train = ConTextDataset(directory_test_train_files, images_directory, train = True,  transform = get_transform(config.input_size, train = True))
-    test  = ConTextDataset(directory_test_train_files, images_directory, train = False, transform = get_transform(config.input_size, train = False))
+    fasttext_obj = fasttext.load_model('cc.en.300.bin')
+    train = ConTextDataset(directory_test_train_files, images_directory, fasttext_obj, train = True,  transform = get_transform(config.input_size, train = True))
+    test  = ConTextDataset(directory_test_train_files, images_directory, fasttext_obj, train = False, transform = get_transform(config.input_size, train = False))
 
     train_loader  = make_loader(train, batch_size=config.batch_size)
     test_loader   = make_loader(test,  batch_size=config.batch_size)
 
     #Make the model
-    model = ConTextTransformer(image_size=config.input_size, num_classes=28, channels=3, dim=256, depth=2, heads=4, mlp_dim=512)
-
+    model = ConTextTransformer(image_size=config.input_size, num_classes=config.input_size, channels=3, dim=256, depth=2, heads=4, mlp_dim=512)
+    model = model.to(device)
     # Make the loss and optimizer
     criterion = nn.CrossEntropyLoss()
     optimizer = torch.optim.Adam(
         model.parameters(), lr=config.learning_rate)
-    
+
     return model, train_loader, test_loader, criterion, optimizer

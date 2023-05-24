@@ -5,8 +5,6 @@ def train(model, loader, criterion, optimizer, config):
     # Tell wandb to watch what the model gets up to: gradients, weights, and more!
     wandb.watch(model, criterion, log="all", log_freq=10)
 
-    # Run training and track with wandb
-    total_batches = len(loader) * config.epochs
     example_ct = 0  # number of examples seen
     batch_ct = 0
     for epoch in tqdm(range(config.epochs)):
