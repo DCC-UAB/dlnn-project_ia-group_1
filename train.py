@@ -8,7 +8,7 @@ def train(model, loader, criterion, optimizer, config):
 
     example_ct = 0  # number of examples seen
     batch_ct = 0
-    scheduler = torch.optim.lr_scheduler.MultiStepLR(optimizer, milestones=[15,30], gamma=0.1)
+    scheduler = torch.optim.lr_scheduler.MultiStepLR(optimizer, milestones=[5, 15, 30], gamma=0.1, verbose = True)
     for epoch in tqdm(range(config.epochs)):
         for _, (images, text, labels) in enumerate(loader):
 
