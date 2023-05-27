@@ -42,7 +42,7 @@ if __name__ == "__main__":
     config = dict(
         epochs=50,
         classes=28,
-        batch_size=64,
+        batch_size=128,
         learning_rate=0.01,
         input_size=256,
         dataset="Con-Text dataset",

@@ -26,7 +26,7 @@ class ConTextDataset(Dataset):
         with open(path_, 'r') as file, open(path_ocr, 'r') as ocr_File:
             self.samples = [tuple(line.split()) for line in file]        #List of tuples.  Each tuple represents a file. A tuple contains the name and the label of the image.
             self.text    = [text.rstrip() for text in ocr_File]          #List of strings. Text of the ocr either for the train or test images.
-
+            #self.tensor
         self.fasttext = fasttext
         self.dim_fasttext = self.fasttext.get_dimension()
         self.max_num_words = 64
