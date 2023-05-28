@@ -102,7 +102,7 @@ def make(config, device="cuda"):
     model = model.to(device)
     # Make the loss and optimizer
     criterion = nn.CrossEntropyLoss()
-    optimizer = torch.optim.Adam(
+    optimizer = torch.optim.AdamW(
         model.parameters(), lr=config.learning_rate)
     
     return model, train_loader, test_loader, criterion, optimizer

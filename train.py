@@ -20,8 +20,6 @@ def train(model, loader, criterion, optimizer, config):
             if ((batch_ct + 1) % 25) == 0:
                 train_log(loss, example_ct, epoch)
         scheduler.step()
-        if epoch == 3:                                                     #Last 10 epochs change to SGD
-            optimizer = torch.optim.SGD(model.parameters(), lr=0.00001)
 
 def train_batch(images, text, labels, model, optimizer, criterion, device="cuda"):
     images, text, labels = images.to(device), text.to(device), labels.to(device)

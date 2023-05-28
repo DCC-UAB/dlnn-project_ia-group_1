@@ -18,5 +18,5 @@ def test(model, test_loader, device="cuda", save:bool= True):
         wandb.log({"test_accuracy": correct / total})
 
     if save:
-        torch.save(model.state_dict(),'/home/xnmaster/dlnn-project_ia-group_1/CheckPoints/model_state_dict_ADAM.pth')
-        wandb.save('/home/xnmaster/dlnn-project_ia-group_1/CheckPoints/model_state_dict_ADAM.pth')
+        torch.save(model.state_dict(),'/home/xnmaster/dlnn-project_ia-group_1/CheckPoints/model_state_dict_ADAMW_1.pth')
+        wandb.save('/home/xnmaster/dlnn-project_ia-group_1/CheckPoints/model_state_dict_ADAMW_1.pth')
