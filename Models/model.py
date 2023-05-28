@@ -4,7 +4,7 @@ import torch.nn as nn
 import torchvision
 
 class ConTextTransformer(nn.Module):
-    def __init__(self, *, num_classes, dim, depth, heads, mlp_dim):
+    def __init__(self, *, num_classes, dim, depth, heads, mlp_dim, dropout):
         super().__init__()
 
         resnet50 = torchvision.models.resnet50(pretrained=True)          # Download the ResNet-50 architecture with pretrained weights.
@@ -23,12 +23,13 @@ class ConTextTransformer(nn.Module):
         encoder_layer = nn.TransformerEncoderLayer(d_model=dim, nhead=heads, dim_feedforward=mlp_dim, batch_first=True)  # Define the encoder layer for the Transformer.
         #encoder_norm = nn.LayerNorm(dim)                                                                    # Layer normalization for the encoder output.
         self.transformer = nn.TransformerEncoder(encoder_layer, num_layers=depth)                            # Transformer encoder to capture contextual information. 
-
+        self.dropout = nn.Dropout(dropout)
         self.to_cls_token = nn.Identity()                                                 # Identity layer to extract the CLS token from the transformer output.
 
         self.mlp_head = nn.Sequential(
             nn.Linear(dim, mlp_dim),                                                      # MLP head to perform classification on the extracted features.
             nn.GELU(),
+            nn.Dropout(dropout),
             nn.Linear(mlp_dim, num_classes)
         )
 
@@ -51,4 +52,5 @@ class ConTextTransformer(nn.Module):
         x = self.transformer(x)                                                             # Apply the transformer encoder.
 
         x = self.to_cls_token(x[:, 0]) #The first token of the transformer output is extracted using x[:, 0]. Which corresponds to the cls token
+        x = self.dropout(x)
         return self.mlp_head(x)  # Pass the extracted token through the MLP head for classification.

@@ -98,7 +98,7 @@ def make(config, device="cuda"):
 
     #Make the model
     #ConTextTransformer(num_classes = 28, dim = 256, depth = 2, heads = 4, mlp_dim = 512)
-    model = ConTextTransformer(num_classes = config.classes, dim = config.dim, depth = config.depth, heads = config.heads, mlp_dim = config.mlp_dim)
+    model = ConTextTransformer(num_classes = config.classes, dim = config.dim, depth = config.depth, heads = config.heads, mlp_dim = config.mlp_dim, dropout=config.dropout)
     model = model.to(device)
     # Make the loss and optimizer
     criterion = nn.CrossEntropyLoss()

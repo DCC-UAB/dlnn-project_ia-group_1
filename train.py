@@ -8,7 +8,7 @@ def train(model, loader, criterion, optimizer, config):
 
     example_ct = 0  # number of examples seen
     batch_ct = 0
-    scheduler = torch.optim.lr_scheduler.MultiStepLR(optimizer, milestones=[15, 40], gamma=0.1, verbose = True)
+    scheduler = torch.optim.lr_scheduler.MultiStepLR(optimizer, milestones=[15, 35, 50], gamma=0.1, verbose = True)
     for epoch in tqdm(range(config.epochs)):
         for _, (images, text, labels) in enumerate(loader):
 
@@ -20,6 +20,9 @@ def train(model, loader, criterion, optimizer, config):
             if ((batch_ct + 1) % 25) == 0:
                 train_log(loss, example_ct, epoch)
         scheduler.step()
+        if epoch == 60:
+            print("Switchin to SGD")
+            optimizer = torch.optim.SGD(model.parameters(), lr = optimizer.param_groups[0]['lr'], momentum=0.9)
 
 def train_batch(images, text, labels, model, optimizer, criterion, device="cuda"):
     images, text, labels = images.to(device), text.to(device), labels.to(device)
