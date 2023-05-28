@@ -26,7 +26,7 @@ class ConTextDataset(Dataset):
         with open(path_, 'r') as file, open(path_ocr, 'r') as ocr_File:
             self.samples = [tuple(line.split()) for line in file]        #List of tuples.  Each tuple represents a file. A tuple contains the name and the label of the image.
             self.text    = [text.rstrip() for text in ocr_File]          #List of strings. Text of the ocr either for the train or test images.
-            #self.tensor
+            
         self.fasttext = fasttext
         self.dim_fasttext = self.fasttext.get_dimension()
         self.max_num_words = 64
@@ -97,7 +97,8 @@ def make(config, device="cuda"):
     test_loader   = make_loader(test,  batch_size=config.batch_size)
 
     #Make the model
-    model = ConTextTransformer(image_size=config.input_size, num_classes=config.input_size, channels=3, dim=256, depth=2, heads=4, mlp_dim=512)
+    #ConTextTransformer(num_classes = 28, dim = 256, depth = 2, heads = 4, mlp_dim = 512)
+    model = ConTextTransformer(num_classes = config.classes, dim = config.dim, depth = config.depth, heads = config.heads, mlp_dim = config.mlp_dim)
     model = model.to(device)
     # Make the loss and optimizer
     criterion = nn.CrossEntropyLoss()

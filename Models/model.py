@@ -4,7 +4,7 @@ import torch.nn as nn
 import torchvision
 
 class ConTextTransformer(nn.Module):
-    def __init__(self, *, image_size, num_classes, dim, depth, heads, mlp_dim, channels=3):
+    def __init__(self, *, num_classes, dim, depth, heads, mlp_dim):
         super().__init__()
 
         resnet50 = torchvision.models.resnet50(pretrained=True)          # Download the ResNet-50 architecture with pretrained weights.
@@ -21,7 +21,7 @@ class ConTextTransformer(nn.Module):
         self.fasttext_feature_to_embedding = nn.Linear(self.dim_fasttext_features, dim)    # Linear transformation to project FastText features to the desired dimension.
         self.cls_token = nn.Parameter(torch.randn(1, 1, dim))                              # Learnable CLS token with shape (1, 1, dim) for class prediction during training.
         encoder_layer = nn.TransformerEncoderLayer(d_model=dim, nhead=heads, dim_feedforward=mlp_dim, batch_first=True)  # Define the encoder layer for the Transformer.
-        #encoder_norm = nn.LayerNorm(dim)                                                                     # Layer normalization for the encoder output.
+        #encoder_norm = nn.LayerNorm(dim)                                                                    # Layer normalization for the encoder output.
         self.transformer = nn.TransformerEncoder(encoder_layer, num_layers=depth)                            # Transformer encoder to capture contextual information. 
 
         self.to_cls_token = nn.Identity()                                                 # Identity layer to extract the CLS token from the transformer output.

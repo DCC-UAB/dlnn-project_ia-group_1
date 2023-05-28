@@ -22,6 +22,7 @@ device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 def model_pipeline(cfg:dict) -> None:
     # tell wandb to get started
     with wandb.init(project="Fastext model", config=cfg):
+      wandb.run.name = 'SGD Trial'
       # access all HPs through wandb.config, so logging matches execution!
       config = wandb.config
 
@@ -40,11 +41,15 @@ if __name__ == "__main__":
     wandb.login()
 
     config = dict(
-        epochs=50,
+        epochs=5,
         classes=28,
-        batch_size=128,
-        learning_rate=0.01,
+        batch_size=256,
+        learning_rate=0.001,
         input_size=256,
+        dim = 256,
+        depth = 2,
+        heads = 4,
+        mlp_dim = 512,
         dataset="Con-Text dataset",
         architecture="ConTextTransformer")
     
