@@ -4,6 +4,10 @@ In this GitHub repository, you can find all the necessary code of our implementa
 
 In the dataset we can find 28 different business categories, which can be for instance: Bakery, Book Store, Motel and many others. As well as 24,255 images in total. In order to be able to obtain the images used for this task, you can click http://isis-data.science.uva.nl/jvgemert/images.tar.gz to directly download them.
 
+Examples of images:
+![image](https://github.com/DCC-UAB/dlnn-project_ia-group_1/assets/126601914/8a22730a-af70-4c4b-aa58-711f7c4eaa32)
+
+
 In the preprocessing folder the code to separate train and test sets and give the label the images correspond to is provdied. Additionaly we have added the OCR_easyocr.py file, where we compute the Optic Character Recognition (OCR) for each image. Given the image, it extracts the text inside it, which improves the model significantly as some images may contain relevant information of what business they belong to.
 
 When the data is preprocessed, in the OUR_utils folder, you can find the file utils.py, where the train and test loader are made, as well as the selection of the criterion and optimizer used. All the different other parameters like learning rate or the number of classes are set in the main.py file.
