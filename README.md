@@ -1,4 +1,4 @@
-# dlnn-project_ia-group_1
+# Buisness Detection
 
 In this GitHub repository, you can find all the necessary code of our implementation of a Business classification problem, where given an image, our model is able to classify it to one of the different propsed classes.
 
@@ -8,6 +8,22 @@ Examples of images:
 
 ![image](https://github.com/DCC-UAB/dlnn-project_ia-group_1/assets/126601914/f036ad7f-0202-4ebf-92bf-53be95648300)
 ![image](https://github.com/DCC-UAB/dlnn-project_ia-group_1/assets/126601914/c3c2739f-32e9-4d9e-b003-2f6c2755dfd0)
+
+## Getting Started
+
+### Prerequesites:
+In order to test the code you will need to install all the libraries in the .yml file. To make it easy you can create a new conda enviroment using the following comand
+```
+conda env create --file environment.yml
+```
+Apart from the .yml file we also are using the fasttext model to make the word embedding. We have installed fasttext from their github directly using:
+```
+git clone https://github.com/facebookresearch/fastText.git
+cd fastText
+sudo pip install .
+```
+### Executing the program
+
 
 In the preprocessing folder the code to separate train and test sets and give the label the images correspond to is provdied. Additionaly we have added the OCR_easyocr.py file, where we compute the Optic Character Recognition (OCR) for each image. Given the image, it extracts the text inside it as well as some positional information of the characters, which improves the model significantly as some images may contain relevant information of what business they belong to.
 
