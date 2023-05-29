@@ -15,7 +15,7 @@ In the test.py, the accuraacy of the model in the test set is obtained, and a fi
 
 In the main.py, the configuration is set as well as the train and test are being performed.
 
-Finnally, in the Visualizations.ipyn, we load the weights obtained for our model, and compute some visualizations of the test images, with the true and predicted classes.
+Finally, in the Visualizations.ipyn, we load the weights obtained for our model, and compute some visualizations of the test images, with the true and predicted classes.
 
 
 
