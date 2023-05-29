@@ -15,6 +15,9 @@ Example of easy_OCR output where each line corresponds to an image, if there is 
 
 ![image](https://github.com/DCC-UAB/dlnn-project_ia-group_1/assets/126601914/8b5dd7ab-92b4-44f9-a24c-b1f260b4be73)
 
+****comentar lo del alexnet****
+
+
 When the data is preprocessed, in the OUR_utils folder, you can find the file utils.py, where the train and test loader are made, as well as the selection of the criterion and optimizer used. All the different other parameters like learning rate or the number of classes are set in the main.py file.
 
 Then in the train.py, you can find the training of the model, with its scheduler and ...
