@@ -27,9 +27,11 @@ def obtain_ocr(directory_test_train_files, images_directory, reader, train = Tru
 
 #If you want to try the code you need to put the directory where you have stored the test.txt and train.txt files obtained form the Train_and_Test.py file.
 #Also you need to specify the directory containing the .jpg images
-directory_test_train_files = '/home/xnmaster/data/'                         #Directory containing the name of the images for the train and test set as well as the classes of each of the images
+
 images_directory           = '/home/xnmaster/data/JPEGImages/'              #Directory containing the images .jpg format
+directory_train_files      = '/home/xnmaster/data/train.txt'            
+directory_test_file        = '/home/xnmaster/data/test.txt'    
 
 reader = easyocr.Reader(['en'], gpu=True)
-obtain_ocr(directory_test_train_files, images_directory, reader, train = True)
-obtain_ocr(directory_test_train_files, images_directory, reader, train = False)
+obtain_ocr(directory_train_files, images_directory, reader, train = True)
+obtain_ocr(directory_test_file,   images_directory, reader, train = False)

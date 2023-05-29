@@ -41,8 +41,9 @@ if __name__ == "__main__":
     wandb.login()
     directory_test_train_files = '/home/xnmaster/data/'                         #Directory containing the name of the images for the train and test set as well as the classes of each of the images
     images_directory           = '/home/xnmaster/data/JPEGImages/'              #Directory containing the images .jpg format
-    fasttext_model_path        = '/home/xnmaster/cc.en.300.bin'
+    fasttext_model_path        = '/home/xnmaster/cc.en.300.bin'                 #Directory containing the binary for the fasttext model
     
+    #Training configurations
     config = dict(
         epochs=70,
         classes=28,
@@ -59,6 +60,7 @@ if __name__ == "__main__":
     
     model = model_pipeline(directory_test_train_files, 
                            images_directory, 
-                           fasttext_model_path, config)
+                           fasttext_model_path, 
+                           config)
     
     print("Done")

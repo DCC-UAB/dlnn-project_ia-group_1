@@ -94,7 +94,6 @@ def make(directory_test_train_files, images_directory, fasttext_model_path, conf
     test_loader   = make_loader(test,  batch_size=config.batch_size)
 
     #Make the model
-    #ConTextTransformer(num_classes = 28, dim = 256, depth = 2, heads = 4, mlp_dim = 512)
     model = ConTextTransformer(num_classes = config.classes, dim = config.dim, depth = config.depth, heads = config.heads, mlp_dim = config.mlp_dim, dropout=config.dropout)
     model = model.to(device)
     # Make the loss and optimizer
