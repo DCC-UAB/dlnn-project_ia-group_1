@@ -22,7 +22,7 @@ It's important to note that the number of lines in the OCR files matches the num
 
 #### Models
 
-Contains the model used in these project
+Contains the model used in this project
 
 #### Preprocessing
 
