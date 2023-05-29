@@ -25,10 +25,21 @@ Contains the model used in these project
 
 #### Preprocessing
 
-The Preprocessing folder contains all the files needed to generate the contents of the Data folder. 
+Preprocessing
+Inside the preprocessing folder, you can find the code for separating the train and test sets and assigning labels to the images. Additionally, we have included the OCR_easyocr.py file, which performs Optical Character Recognition (OCR) on each image. It extracts the text and positional information of characters, enhancing the model's performance by utilizing relevant information about the businesses.
 
-If you want to reproduce the code you will need to install the [Train_Test_partitions](http://isis-data.science.uva.nl/jvgemert/features.tar.gz). This directory contains the images "JPEGImages" and the labels, split into 3 random partitions (0,1,2). We follow the Pascal VOC format where each class has text file containing binary labels. Also text files containing the names of the train/test/train+test images are included.
-![image](https://github.com/DCC-UAB/dlnn-project_ia-group_1/assets/126601914/f036ad7f-0202-4ebf-92bf-53be95648300](https://github.com/DCC-UAB/dlnn-project_ia-group_1/assets/98542048/f52aefa3-92c4-4d53-94c9-7d63ce8eb504)
+Here is an example of the easy_OCR output, where each line corresponds to an image. If a line contains a 0, it means there is no text in the image.
+
+image
+
+Data Preprocessing
+Once the data is preprocessed, you can find the utils.py file in the OUR_utils folder. This file contains the train and test loaders, as well as the selection of the criterion and optimizer. The main.py file sets various parameters such as learning rate and the number of classes.
+
+The train.py file is responsible for training the model, including the scheduler and other relevant aspects.
+
+In the test.py file, the model's accuracy on the test set is calculated, and the weights of our model are saved in a file for future result visualization.
+
+Lastly, the main.py file sets the configuration and performs the training and testing processes.
 
 ## Getting Started
 
@@ -37,7 +48,7 @@ In order to test the code you will need to install all the libraries in the .yml
 ```
 conda env create --file environment.yml
 ```
-Apart from the .yml file we also are using the fasttext model to make the word embedding. We have installed fasttext from their github directly using:
+Apart from the .yml file we also are using the fasttext model to create the word embeddings. We have installed fasttext from their github directly using:
 ```
 git clone https://github.com/facebookresearch/fastText.git
 https://github.com/DCC-UAB/dlnn-project_ia-group_1/assets/98542048/f52aefa3-92c4-4d53-94c9-7d63ce8eb504
@@ -51,31 +62,26 @@ fasttext.util.download_model('en', if_exists='ignore')  # English
 ```
 and a file called 'cc.en.300.bin' will be installed in the current folder.
 
-### Executing the program
-To reproduce the model training you will need to install the images dataset. You can downloaded directly clicking [here](http://isis-data.science.uva.nl/jvgemert/images.tar.gz). Once you have the dataset with the images installed you will need to change the variables used to assigned the paths to the images in your system. The variables that need to be changed are, and can be found at the end of the main.py file.
 
+### Executing the program
+ [here](http://isis-data.science.uva.nl/jvgemert/images.tar.gz). Once you have the dataset with the images installed you will need to change the variables used to assigned the paths to the images in your system. The variables that need to be changed are, and can be found at the end of the main.py file.
+
+
+Running the Program
+To run the program and replicate the model training, follow these steps:
+
+1. Download the image dataset by clicking [here](http://isis-data.science.uva.nl/jvgemert/images.tar.gz). This dataset contains the necessary images for the training process.
+2. After downloading the dataset.
+3. Open the main.py file and locate the variables at the end of the file. These variables assign the paths to the images in your system.
+4. Update the variables with the correct paths that correspond to the location of the installed image dataset on your system.
 ```
 directory_test_train_files = 'path to the Data folder. The Data folder contains the files obtained when running the contents of the Preprocessing folder'
 images_directory           = 'path to the .jpg images directory'             
 fasttext_model_path        = 'path to the model containing the binary for the fastext model'
 ```
+5. Save the main.py file with the updated paths.
+6. Run the main.py file to execute the program and start the model training process.
+
+By following these steps and ensuring the correct paths to the image dataset, you will be able to reproduce the model training successfully.
 
 If you also want to try the preprocessing files you will need to install also the [Train_Test_partitions](http://isis-data.science.uva.nl/jvgemert/features.tar.gz). This directory contains the images "JPEGImages" and the labels, split into 3 random partitions (0,1,2). We follow the Pascal VOC format where each class has text file containing binary labels. Also text files containing the names of the train/test/train+test images are included.
-
-
-In the preprocessing folder the code to separate train and test sets and give the label the images correspond to is provdied. Additionaly we have added the OCR_easyocr.py file, where we compute the Optic Character Recognition (OCR) for each image. Given the image, it extracts the text inside it as well as some positional information of the characters, which improves the model significantly as some images may contain relevant information of what business they belong to.
-
-Example of easy_OCR output where each line corresponds to an image, if there is a 0 means that in the image there is no text.
-
-![image](https://github.com/DCC-UAB/dlnn-project_ia-group_1/assets/126601914/8b5dd7ab-92b4-44f9-a24c-b1f260b4be73)
-
-****comentar lo del alexnet****
-
-
-When the data is preprocessed, in the OUR_utils folder, you can find the file utils.py, where the train and test loader are made, as well as the selection of the criterion and optimizer used. All the different other parameters like learning rate or the number of classes are set in the main.py file.
-
-Then in the train.py, you can find the training of the model, with its scheduler and ...
-
-In the test.py, the accuracy of the model in the test set is obtained, and a file with the weights of our model is saved, to later be able to visualize some results.
-
-In the main.py, the configuration is set as well as the train and test are being performed.
