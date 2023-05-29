@@ -40,21 +40,21 @@ Then we have the main.py file that sets various parameters such as learning rate
 ## Getting Started
 
 ### Prerequesites:
-Firts you need to clone these repository in your machine.
+Firts you need to clone this repository in your machine.
 ```
 https://github.com/DCC-UAB/dlnn-project_ia-group_1.git
 ```
-In order to test the code you will need to install all the libraries in the .yml file. To make it easy you can create a new conda enviroment using the following comand
+In order to test the code you will need to install all the libraries in the .yml file. To make it easier you can create a new conda enviroment using the following comand
 ```
 conda env create --file environment.yml
 ```
-Apart from the .yml file we also are using the fasttext model to create the word embeddings. We have installed fasttext from their github directly using:
+Aside from the .yml file we also are using the fasttext model to create the word embeddings. We have installed fasttext from their github directly using:
 ```
 git clone https://github.com/facebookresearch/fastText.git
 cd fastText
 sudo pip install .
 ```
-After installing the fastext model you also need to obtain the binary file needed to run the fasText model. To obtain these file you will need to run:
+After installing the fastext model you also need to obtain the binary file needed to run the fasText model. To obtain this file you will need to run:
 ```
 import fasttext.util
 fasttext.util.download_model('en', if_exists='ignore')  # English
