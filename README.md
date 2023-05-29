@@ -1,8 +1,8 @@
 # Buisness Detection
 
-In this GitHub repository, you can find all the necessary code of our implementation of a Business classification problem, where given an image, our model is able to classify it to one of the different proposed classes.
+In this GitHub repository, you can find all the necessary code of our implementation of a Business classification problem on the [Con-Text dataset](https://staff.fnwi.uva.nl/s.karaoglu/datasetWeb/Dataset.html). Where given an image, our model is able to classify it to one of the different proposed classes.
 
-In the dataset we can find 28 different business categories, which can be for instance: Bakery, Book Store, Motel and many others. As well as 24,255 images in total. In order to be able to obtain the images used for this task, you can click http://isis-data.science.uva.nl/jvgemert/images.tar.gz to directly download them.
+In the dataset we can find 28 different business categories, which can be for instance: Bakery, Book Store, Motel and many others. As well as 24,255 images in total. In order to be able to obtain the images used for this task, you can click [here](http://isis-data.science.uva.nl/jvgemert/images.tar.gz to) directly download them.
 
 Examples of images:
 
@@ -24,7 +24,7 @@ Contains the model used in these project
 
 #### Preprocessing
 
-Folder that contains all the files needed to generate the contents of the Data folder.
+Folder that contains all the files needed to generate the contents of the Data folder. If you want to reproduce the code you will need to install the [Train_Test_partitions](http://isis-data.science.uva.nl/jvgemert/features.tar.gz) 
 ## Getting Started
 
 ### Prerequesites:
