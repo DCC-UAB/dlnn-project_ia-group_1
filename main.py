@@ -19,7 +19,7 @@ torch.cuda.manual_seed_all(hash("so runs are repeatable") % 2**32 - 1)
 # Device configuration
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
-def model_pipeline(cfg:dict) -> None:
+def model_pipeline(directory_test_train_files, images_directory, cfg:dict) -> None:
     # tell wandb to get started
     with wandb.init(project="Fastext model", config=cfg):
       wandb.run.name = 'ADAMW-SGD-MOMENTUM-BATCH_256-DRP_0.2'
@@ -27,7 +27,7 @@ def model_pipeline(cfg:dict) -> None:
       config = wandb.config
 
       # make the model, data, and optimization problem
-      model, train_loader, test_loader, criterion, optimizer = make(config)
+      model, train_loader, test_loader, criterion, optimizer = make(directory_test_train_files, images_directory, config)
 
       # and use them to train the model
       train(model, train_loader, criterion, optimizer, config)
@@ -39,7 +39,8 @@ def model_pipeline(cfg:dict) -> None:
 
 if __name__ == "__main__":
     wandb.login()
-
+    directory_test_train_files = '/home/xnmaster/data/'                         #Directory containing the name of the images for the train and test set as well as the classes of each of the images
+    images_directory           = '/home/xnmaster/data/JPEGImages/'              #Directory containing the images .jpg format
     config = dict(
         epochs=70,
         classes=28,

@@ -1,7 +1,6 @@
 import os
 
-def TrainTest_files(new_file_path, type):
-    train_test_dir = '/home/xnmaster/data/ImageSets/0/' 
+def TrainTest_files(new_file_path, train_test_dir, type):
     class_label = 0
 
     with open(new_file_path, 'w') as new_file:
@@ -16,9 +15,11 @@ def TrainTest_files(new_file_path, type):
                         new_file.write(new_line)
             class_label += 1
 
+train_test_dir = '/home/xnmaster/data/ImageSets/0/'     #Dire
+
 new_path_train = '/home/xnmaster/data/train.txt'
 new_path_test  = '/home/xnmaster/data/test.txt'
 
-TrainTest_files(new_path_train, 'train')
-TrainTest_files(new_path_test,  'test')
+TrainTest_files(new_path_train, train_test_dir, 'train')
+TrainTest_files(new_path_test,  train_test_dir, 'test')
 

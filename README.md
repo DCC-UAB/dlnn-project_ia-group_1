@@ -57,12 +57,3 @@ Then in the train.py, you can find the training of the model, with its scheduler
 In the test.py, the accuracy of the model in the test set is obtained, and a file with the weights of our model is saved, to later be able to visualize some results.
 
 In the main.py, the configuration is set as well as the train and test are being performed.
-
-In the Visualizations.ipynb, we load the weights obtained for our model, and compute some visualizations of the test images, with the true and predicted classes.
-
-Finally, we have decided to try the model on complete new images extracted and the results are shown in the file jajfnjfalb.py
-
-
-
-
-

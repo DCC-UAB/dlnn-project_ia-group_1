@@ -84,7 +84,7 @@ def make_loader(dataset, batch_size):
                                          pin_memory=True, num_workers=2)
     return loader
 
-def make(config, device="cuda"):
+def make(directory_test_train_files, images_directory, config, device="cuda"):
     # Make the data
     directory_test_train_files = '/home/xnmaster/data/'            
     images_directory           = '/home/xnmaster/data/JPEGImages/'

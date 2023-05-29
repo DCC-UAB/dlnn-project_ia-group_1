@@ -13,7 +13,10 @@ dependencies:
 - PIL
 - numpy
 - os
+<<<<<<< Updated upstream
 - einops
+=======
+>>>>>>> Stashed changes
 - pip:
   - torchvision
   - wandb
