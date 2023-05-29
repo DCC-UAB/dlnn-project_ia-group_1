@@ -75,3 +75,13 @@ fasttext_model_path        = 'path to the model containing the binary for the fa
 By following these steps and ensuring the correct paths to the image dataset, you will be able to reproduce the model training successfully.
 
 If you also want to try the preprocessing files you will need to install also the [Train_Test_partitions](http://isis-data.science.uva.nl/jvgemert/features.tar.gz). This directory contains the images "JPEGImages" and the labels, split into 3 random partitions (0,1,2). We follow the Pascal VOC format where each class has text file containing binary labels. Also text files containing the names of the train/test/train+test images are included.
+
+## Contributors
+
+Authors: Nil Biescas, Xavi Soto, Jordi Longaron
+
+Subject: Neural Networks and Deep Learning.
+
+Degreee in Artificial Intelligence, 2n course.
+
+UAB, 2023.
