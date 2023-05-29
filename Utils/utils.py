@@ -84,12 +84,9 @@ def make_loader(dataset, batch_size):
                                          pin_memory=True, num_workers=2)
     return loader
 
-def make(directory_test_train_files, images_directory, config, device="cuda"):
+def make(directory_test_train_files, images_directory, fasttext_model_path, config, device="cuda"):
     # Make the data
-    directory_test_train_files = '/home/xnmaster/data/'            
-    images_directory           = '/home/xnmaster/data/JPEGImages/'
-
-    fasttext_obj = fasttext.load_model('/home/xnmaster/cc.en.300.bin')
+    fasttext_obj = fasttext.load_model(fasttext_model_path)
     train = ConTextDataset(directory_test_train_files, images_directory, fasttext_obj, train = True,  transform = get_transform(config.input_size, train = True))
     test  = ConTextDataset(directory_test_train_files, images_directory, fasttext_obj, train = False, transform = get_transform(config.input_size, train = False))
 
