@@ -35,8 +35,7 @@ Here is an example of the easy_OCR output, where each line corresponds to an ima
 ### Utils
 Once the data is preprocessed, you can find the utils.py file in the OUR_utils folder. This file contains the train and test loaders, as well as the selection of the criterion and optimizer. 
 
-Then we have the main.py file that sets various parameters such as learning rate and the number of classes. The train.py file is responsible for training the model, including the scheduler and other relevant aspects. And the test.py file, where the model's accuracy on the test set is calculated, and the weights of our model are saved in a file for future result visualization. The weights of the model then are used for visualization in the file Visualizations.ipynb and the final evauation report.
-
+Then we have the main.py file that sets various parameters such as learning rate and the number of classes. The train.py file is responsible for training the model, including the scheduler and other relevant aspects. And the test.py file, where the model's accuracy on the test set is calculated, and the weights of our model are saved in a file for future result visualization. The visualizations.ipynb file contains visualizations and the last evaluations of the model.
 ## Getting Started
 
 ### Prerequesites:
