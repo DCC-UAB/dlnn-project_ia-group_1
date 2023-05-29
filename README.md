@@ -11,7 +11,7 @@ When the data is preprocessed, in the OUR_utils folder, you can find the file ut
 
 Then in the train.py, you can find the training of the model, with its scheduler and ...
 
-In the test.py, the accuraacy of the model in the test set is obtained, and a file with the weights of our model is saved, to later be able to visualize some results.
+In the test.py, the accuracy of the model in the test set is obtained, and a file with the weights of our model is saved, to later be able to visualize some results.
 
 In the main.py, the configuration is set as well as the train and test are being performed.
 
