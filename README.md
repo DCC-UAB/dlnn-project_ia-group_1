@@ -6,10 +6,11 @@ In the dataset we can find 28 different business categories, which can be for in
 
 Examples of images:
 
-![image](https://github.com/DCC-UAB/dlnn-project_ia-group_1/assets/126601914/f036ad7f-0202-4ebf-92bf-53be95648300)
-![image](https://github.com/DCC-UAB/dlnn-project_ia-group_1/assets/126601914/c3c2739f-32e9-4d9e-b003-2f6c2755dfd0)
+![image](https://github.com/DCC-UAB/dlnn-project_ia-group_1/assets/98542048/02d10d5f-dd18-4266-9641-ef07be7d3154)
+![image](https://github.com/DCC-UAB/dlnn-project_ia-group_1/assets/98542048/73d9639e-8c40-4703-9d49-7756e8c2d5be)
 
-## Structure of the repo
+
+## Repository Structure
 
 #### Data folder:
 
@@ -25,21 +26,16 @@ Contains the model used in these project
 
 #### Preprocessing
 
-Preprocessing
 Inside the preprocessing folder, you can find the code for separating the train and test sets and assigning labels to the images. Additionally, we have included the OCR_easyocr.py file, which performs Optical Character Recognition (OCR) on each image. It extracts the text and positional information of characters, enhancing the model's performance by utilizing relevant information about the businesses.
 
 Here is an example of the easy_OCR output, where each line corresponds to an image. If a line contains a 0, it means there is no text in the image.
 
-image
+![image](https://github.com/DCC-UAB/dlnn-project_ia-group_1/assets/98542048/eba3b8b1-f7a8-4966-8321-216cafe262c0)
 
-Data Preprocessing
-Once the data is preprocessed, you can find the utils.py file in the OUR_utils folder. This file contains the train and test loaders, as well as the selection of the criterion and optimizer. The main.py file sets various parameters such as learning rate and the number of classes.
+### Utils
+Once the data is preprocessed, you can find the utils.py file in the OUR_utils folder. This file contains the train and test loaders, as well as the selection of the criterion and optimizer. 
 
-The train.py file is responsible for training the model, including the scheduler and other relevant aspects.
-
-In the test.py file, the model's accuracy on the test set is calculated, and the weights of our model are saved in a file for future result visualization.
-
-Lastly, the main.py file sets the configuration and performs the training and testing processes.
+Then we have the main.py file that sets various parameters such as learning rate and the number of classes. The train.py file is responsible for training the model, including the scheduler and other relevant aspects. And the test.py file, where the model's accuracy on the test set is calculated, and the weights of our model are saved in a file for future result visualization.
 
 ## Getting Started
 
