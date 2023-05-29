@@ -13,6 +13,7 @@ dependencies:
 - PIL
 - numpy
 - os
+- einops
 - pip:
   - torchvision
   - wandb
