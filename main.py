@@ -6,7 +6,7 @@ import torch
 
 from train import *
 from test import *                  
-from OUR_utils.utils import *     #Contains the functions: (make(), )
+from Utils.utils import *     #Contains the functions: (make(), )
 from tqdm.auto import tqdm
 
 # Ensure deterministic behavior
