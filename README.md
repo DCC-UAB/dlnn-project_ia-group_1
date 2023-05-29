@@ -40,6 +40,10 @@ Then we have the main.py file that sets various parameters such as learning rate
 ## Getting Started
 
 ### Prerequesites:
+Firts you need to clone these repository in your machine.
+```
+https://github.com/DCC-UAB/dlnn-project_ia-group_1.git
+```
 In order to test the code you will need to install all the libraries in the .yml file. To make it easy you can create a new conda enviroment using the following comand
 ```
 conda env create --file environment.yml
