@@ -47,8 +47,7 @@ conda env create --file environment.yml
 Apart from the .yml file we also are using the fasttext model to create the word embeddings. We have installed fasttext from their github directly using:
 ```
 git clone https://github.com/facebookresearch/fastText.git
-https://github.com/DCC-UAB/dlnn-project_ia-group_1/assets/98542048/f52aefa3-92c4-4d53-94c9-7d63ce8eb504
-
+cd fastText
 sudo pip install .
 ```
 After installing the fastext model you also need to obtain the binary file needed to run the fasText model. To obtain these file you will need to run:
@@ -58,12 +57,7 @@ fasttext.util.download_model('en', if_exists='ignore')  # English
 ```
 and a file called 'cc.en.300.bin' will be installed in the current folder.
 
-
 ### Executing the program
- [here](http://isis-data.science.uva.nl/jvgemert/images.tar.gz). Once you have the dataset with the images installed you will need to change the variables used to assigned the paths to the images in your system. The variables that need to be changed are, and can be found at the end of the main.py file.
-
-
-Running the Program
 To run the program and replicate the model training, follow these steps:
 
 1. Download the image dataset by clicking [here](http://isis-data.science.uva.nl/jvgemert/images.tar.gz). This dataset contains the necessary images for the training process.
