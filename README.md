@@ -84,9 +84,6 @@ If you want to use our already trained models, here you can found checkpoints fo
 
 <a href="https://drive.google.com/drive/folders/1yMg9uhjGs4E7EjoM9c3II3My5bD313TT?usp=sharing" target="_blank">Pretrained Weights</a>
 
-[Checkpoints of different models](https://drive.google.com/drive/folders/1yMg9uhjGs4E7EjoM9c3II3My5bD313TT?usp=sharing){:target="_blank" rel="noopener"}
-
-
 ## Contributors
 
 Authors: Nil Biescas, Xavi Soto, Jordi Longaron
