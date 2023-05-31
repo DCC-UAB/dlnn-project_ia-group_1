@@ -82,7 +82,7 @@ If you also want to try the preprocessing files you will need to install also th
 
 If you want to use our already trained models, here you can found checkpoints for different models, you can download from here to use them for testing the model or training it a little more:
 
-[Checkpoints of different models](https://drive.google.com/drive/folders/1yMg9uhjGs4E7EjoM9c3II3My5bD313TT?usp=sharing){:target="_blank"}
+[Checkpoints of different models](https://drive.google.com/drive/folders/1yMg9uhjGs4E7EjoM9c3II3My5bD313TT?usp=sharing){:target="_blank" rel="noopener"}
 
 ## Contributors
 
