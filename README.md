@@ -80,6 +80,9 @@ By following these steps and ensuring the correct paths to the image dataset, yo
 
 If you also want to try the preprocessing files you will need to install also the [Train_Test_partitions](http://isis-data.science.uva.nl/jvgemert/features.tar.gz). This directory contains the images "JPEGImages" and the labels, split into 3 random partitions (0,1,2). We follow the Pascal VOC format where each class has text file containing binary labels. Also text files containing the names of the train/test/train+test images are included.
 
+If you want to use our already trained models, here you can found checkpoints for different models, you can download from here to use them for testing the model or training it a little more:
+
+[Checkpoints of different models](https://drive.google.com/drive/folders/1yMg9uhjGs4E7EjoM9c3II3My5bD313TT?usp=sharing)
 ## Contributors
 
 Authors: Nil Biescas, Xavi Soto, Jordi Longaron
